@@ -64,9 +64,11 @@ npm.cmd run e2e:api
 ## Layout
 
 ```text
-e2e/ui/login.spec.ts       Login E2E against aldi.us
-e2e/api/tasks.spec.ts      Task API CRUD boilerplate
-e2e/api/types.ts           Shared API types
-docs/                      Manual testing + bonus Q&A
-playwright.config.ts       UI + API projects
+e2e/ui/login.spec.ts           Login E2E against aldi.us (POM)
+e2e/ui/pages/login.page.ts     Login page object + credentials
+e2e/ui/fixtures.ts             Stealth context + loginPage fixture
+e2e/api/tasks.spec.ts          Task API CRUD boilerplate
+e2e/api/types.ts               Shared API types
+docs/                          Manual testing + bonus Q&A
+playwright.config.ts           UI + API projects
 ```
