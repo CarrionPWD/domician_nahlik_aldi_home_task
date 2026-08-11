@@ -1,41 +1,45 @@
-# ALDI US — Playwright tests
+# Aldi Interview Home Task Solution Domicián Náhlik
 
-Playwright suites against live [aldi.us](https://www.aldi.us/) (UI login) plus REST task-management API boilerplate.
+The home task needs to be delivered as a public GitHub repo. For this reason the answers for the additional questions and the TCs for the Manual Testing task will be delivered as markdown files for better readability directly on GitHub.
+
+## First task: Manual Testing
+
+You can find the test cases, description and answers in the docs folder -> manual-testing.md
 
 ## Credentials (UI login)
 
-| Field | Value |
-| --- | --- |
+Due to the ask to create an executable Playwright UI test, I decided to use aldi.us as the target webpage. I used a temporary e-mail provider for registration and created a test user which can be used for the asked automated login solution. You can find the credentials here: (not sure if it's a good idea to upload a test user's credentials for a live service in a public github repo but what can go wrong)
+
 | Email | `geseg40542@primetor.com` |
 | Password | `SuperPassword01!` |
 
-Override with `ALDI_EMAIL` / `ALDI_PASSWORD` if needed.
+Override with `ALDI_EMAIL` / `ALDI_PASSWORD` if needed as environment variables., usually I would store the credentials this way, it wasn't asked specifically in this task but added it as an option.
 
 ## Setup
 
 Requires **Google Chrome** installed (Friendly Captcha on `account.aldi.us` rejects bundled Chromium).
 
 ```bash
-npm.cmd install
+npm install
 ```
-
-> On PowerShell, if `npm` is blocked by execution policy, use `npm.cmd`.
 
 ## Run tests
 
 ```bash
 # UI login against aldi.us (uses real Chrome)
-npm.cmd run e2e
-npm.cmd run e2e:ui
+npm run e2e
+npm run e2e:ui
 
 # Watch the browser
-npm.cmd run e2e:headed
+npm run e2e:headed
 
 # API boilerplate (needs a real API at API_BASE_URL or localhost:3000)
-npm.cmd run e2e:api
+npm run e2e:api
 ```
 
 ### UI login flow covered
+
+Describing the login flow since it's a little complicated. Usually the site asks for cookies and asks me how I would like to shop (store, delivery, pick-up) so it needed to be an extra acceptance step when developing the automated solution. After that the login contains a FriendlyCaptcha which seems to fail in bundled Chromium so I decided to use a real Google Chrome browser.
 
 1. Open `https://www.aldi.us`
 2. Accept cookies if shown
@@ -44,31 +48,13 @@ npm.cmd run e2e:api
 5. Complete Friendly Captcha (“Click to start verification”)
 6. Assert success (valid password) or error (invalid password)
 
-## Task docs
-
-| Task | Document |
-| --- | --- |
-| Task 1 — Manual testing | [docs/manual-testing-add-to-shopping-list.md](docs/manual-testing-add-to-shopping-list.md) |
-| Task 2 — UI E2E | `e2e/ui/login.spec.ts` |
-| Task 3 — API boilerplate | `e2e/api/tasks.spec.ts` |
-| Docs index | [docs/README.md](docs/README.md) |
-
-## Bonus write-ups
-
-| Topic | Doc |
-| --- | --- |
-| Docker for QA | [docs/docker-for-qa.md](docs/docker-for-qa.md) |
-| JUnit + Selenium (Delete Task) | [docs/junit-selenium-delete-task.md](docs/junit-selenium-delete-task.md) |
-| CI integration | [docs/ci-integration.md](docs/ci-integration.md) |
-
 ## Layout
 
 ```text
-e2e/ui/login.spec.ts           Login E2E against aldi.us (POM)
-e2e/ui/pages/login.page.ts     Login page object + credentials
-e2e/ui/fixtures.ts             Stealth context + loginPage fixture
-e2e/api/tasks.spec.ts          Task API CRUD boilerplate
-e2e/api/types.ts               Shared API types
-docs/                          Manual testing + bonus Q&A
-playwright.config.ts           UI + API projects
+e2e/ui/login.spec.ts       Login E2E against aldi.us
+e2e/ui/pages/              Page files to make POM possible
+e2e/api/tasks.spec.ts      Task API CRUD boilerplate
+e2e/api/types.ts           Shared API types
+docs/                      Manual testing + bonus Q&A
+playwright.config.ts       UI + API projects
 ```
