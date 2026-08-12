@@ -1,0 +1,19 @@
+{
+  "name": "aldi-login-playwright",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Playwright E2E tests for aldi.us login and task API boilerplate",
+  "scripts": {
+    "e2e": "playwright test --project=ui",
+    "e2e:ui": "playwright test --project=ui",
+    "e2e:api": "playwright test --project=api",
+    "e2e:all": "playwright test",
+    "e2e:headed": "playwright test --project=ui --headed",
+    "e2e:report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "@types/node": "^22.13.10",
+    "typescript": "~5.7.2"
+  }
+}
